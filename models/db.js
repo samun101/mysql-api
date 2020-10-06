@@ -1,12 +1,12 @@
 const mysql = require("mysql");
-const dbConfig = require("../config/db.config.js");
+//const dbConfig = require("../config/db.config.js");
 
 // Create a connection to the database
 const connection = mysql.createConnection({
-  host: dbConfig.host,
-  user: dbConfig.user,
-  database: dbConfig.database,
-  password: dbConfig.password
+  database : "heroku_a18441a3eb52d5c",
+  user : "bdd59ac6cdfb41",
+  host : "us-cdbr-east-02.cleardb.com",
+  pass : "10a3e7dd",
 //  database: dbConfig.DB
 });
 
