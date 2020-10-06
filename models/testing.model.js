@@ -7,14 +7,13 @@ const Testing = function(testing) {
 };
 
 Testing.create = (newTesting, result) => {
-  //console.log(newTesting)
   sql.query("INSERT INTO testing SET ?", newTesting, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
-    console.log("created testing: ", { id: res.insertId, ...newTesting });
+    //console.log("created testing: ", { id: res.insertId, ...newTesting });
     result(null, { id: res.insertId, ...newTesting });
   });
 };
