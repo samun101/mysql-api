@@ -7,6 +7,7 @@ const connection = mysql.createConnection({
   user: dbConfig.user,
   database: dbConfig.database,
   password: dbConfig.password,
+  port: dbConfig.port
 //  database: dbConfig.DB
 });
 
