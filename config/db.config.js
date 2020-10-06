@@ -6,5 +6,16 @@ module.exports = {
   user : "bdd59ac6cdfb41",
   host : "us-cdbr-east-02.cleardb.com",
   pass : "10a3e7dd",
-  port : 3006
+  port : 3306
 }
+
+
+mysql:/
+bdd59ac6cdfb41
+:
+10a3e7dd
+@
+us-cdbr-east-02.cleardb.com
+/
+heroku_a18441a3eb52d5c
+?reconnect=true
