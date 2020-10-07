@@ -39,8 +39,8 @@ exports.getAll = (req, res) => {
   });
 };
 
-exports.remove = (req, res) => {
-  Testing.remove((err, data) => {
+exports.clean = (req, res) => {
+  Testing.clean((err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -55,6 +55,29 @@ exports.remove = (req, res) => {
   });
 }
 
+exports.remove = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+  Testing.remove(req.params.testingId,(err, data) => {
+    if (err) {
+
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `value not found.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not empty from database"
+        });
+      }
+    } else res.send({ message: `testing was cleaned successfully!` });
+  });
+}
+
+
 
 exports.update = (req, res) => {
   // Validate Request
@@ -63,7 +86,7 @@ exports.update = (req, res) => {
       message: "Content can not be empty!"
     });
   }
-  console.log(req.params.testingId)
+  //console.log(req.params.testingId)
   //actually updating
   Testing.updateById(
     req.params.testingId,
