@@ -13,9 +13,10 @@ Testing.create = (newTesting, result) => {
       result(err, null);
       return;
     }
-    //console.log("created testing: ", { id: res.insertId, ...newTesting });
+    console.log("created testing: ", { id: res.insertId, ...newTesting });
     result(null, { id: res.insertId, ...newTesting });
   });
+
 };
 
 Testing.getAll = result => {
@@ -28,10 +29,10 @@ Testing.getAll = result => {
     console.log("testing: ", res);
     result(null, res);
   });
+
 };
 
 Testing.remove = result => {
-  console.log("starting deletion");
   sql.query("DELETE FROM testing WHERE success IS null", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -48,6 +49,7 @@ Testing.remove = result => {
     console.log("cleaned up null values");
     result(null, res);
   });
+
 };
 
 Testing.updateById = (id, testing, result) => {
@@ -71,6 +73,7 @@ Testing.updateById = (id, testing, result) => {
       result(null, { id: id, ...testing });
     }
   );
+
 };
 
 module.exports = Testing;
