@@ -32,7 +32,7 @@ Testing.getAll = result => {
 
 };
 
-Testing.remove = result => {
+Testing.clean = result => {
   sql.query("DELETE FROM testing WHERE success IS null", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -49,6 +49,29 @@ Testing.remove = result => {
     console.log("cleaned up null values");
     result(null, res);
   });
+
+};
+
+Testing.remove = (id, result) => {
+  sql.query(
+    "DELETE FROM testing WHERE idtesting IS ?", id,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found Customer with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("removed testing: ", { id: id });
+      result(null, res);
+    }
+  );
 
 };
 

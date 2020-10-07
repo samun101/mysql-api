@@ -7,7 +7,7 @@ module.exports = app => {
 
   app.get("/testing", testing.getAll);
 
-  app.delete("/testing", testing.remove);
-
+//  app.delete("/testing", testing.clean);
+  app.delete("/testing:testingId", testing.remove);
   app.put("/testing:testingId", testing.update);
 };
