@@ -54,7 +54,7 @@ Testing.clean = result => {
 
 Testing.remove = (id, result) => {
   sql.query(
-    "DELETE FROM testing WHERE idtesting IS ?", id,
+    "DELETE FROM testing WHERE idtesting = ?", id,
     (err, res) => {
       if (err) {
         console.log("error: ", err);

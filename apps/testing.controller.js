@@ -61,7 +61,8 @@ exports.remove = (req, res) => {
       message: "Content can not be empty!"
     });
   }
-  Testing.remove(req.params.testingId,(err, data) => {
+  testingId = parseInt(req.params.testingId),
+  Testing.remove(testingId,(err, data) => {
     if (err) {
 
       if (err.kind === "not_found") {
