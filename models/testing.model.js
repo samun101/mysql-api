@@ -32,7 +32,7 @@ Testing.getAll = result => {
 };
 
 Testing.clean = result => {
-  sql.query("DELETE FROM testing WHERE stringText IS null", (err, res) => {
+  sql.query("DELETE FROM testing WHERE PhoneNumber = 0;", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
