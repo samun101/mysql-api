@@ -99,4 +99,26 @@ Testing.updateById = (id, testing, result) => {
 
 };
 
+Testing.selectbyID = (id, result) => {
+  sql.query(
+    "SELECT  * FROM testing WHERE idtesting = ? ;", id,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found Customer with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("got from testing: ", { id: id });
+      result(null,res);
+    }
+  );
+
+};
 module.exports = Testing;

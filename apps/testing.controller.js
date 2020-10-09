@@ -78,7 +78,22 @@ exports.remove = (req, res) => {
   });
 }
 
-
+exports.selectbyID = (req, res) => {
+  testingId = parseInt(req.params.testingId),
+  Testing.selectbyID(testingId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Customer with id ${req.params.testingId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Customer with id " + req.params.testingId
+        });
+      }
+    } else res.send(data);
+  });
+};
 
 exports.update = (req, res) => {
   // Validate Request
