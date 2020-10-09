@@ -11,9 +11,8 @@ exports.create = (req, res) => {
 
   // Create a testing
   const testing = new Testing ({
-    textTwo: req.body.textTwo,
-    success: req.body.success,
-    uploader: req.body.uploader
+    PhoneNumber: req.body.PhoneNumber,
+    stringText: req.body.stringText
   });
 
   // Save testing in the database

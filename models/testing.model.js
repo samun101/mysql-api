@@ -1,9 +1,8 @@
 const sql = require("./db.js");
 // constructor
 const Testing = function(testing) {
-  this.textTwo = testing.textTwo;
-  this.success = testing.success;
-  this.uploader = testing.uploader;
+  this.PhoneNumber = testing.PhoneNumber;
+  this.stringText = testing.stringText;
 };
 
 Testing.create = (newTesting, result) => {
@@ -33,7 +32,7 @@ Testing.getAll = result => {
 };
 
 Testing.clean = result => {
-  sql.query("DELETE FROM testing WHERE success IS null", (err, res) => {
+  sql.query("DELETE FROM testing WHERE PhoneNumber IS null", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -77,8 +76,8 @@ Testing.remove = (id, result) => {
 
 Testing.updateById = (id, testing, result) => {
   sql.query(
-    "UPDATE testing SET textTwo = ?, success = ?, uploader = ? WHERE idtesting = ?",
-    [testing.textTwo, testing.success, testing.uploader, id],
+    "UPDATE testing SET PhoneNumber = ?, stringText = ? WHERE idtesting = ?",
+    [parseInt(esting.PhoneNumber), testing.stringText, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
