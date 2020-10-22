@@ -5,15 +5,15 @@ exports.getAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving testing."
+          err.message || "Some error occurred while retrieving years."
       });
     else res.send(data);
   });
 };
 
 exports.selectbyID = (req, res) => {
-  yearsId = parseInt(req.params.yearsId),
-  Years.selectbyID(testingId, (err, data) => {
+  yearsId = parseInt(req.params.idyears),
+  Years.selectbyID(yearsId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

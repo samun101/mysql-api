@@ -99,6 +99,7 @@ Testing.updateById = (id, testing, result) => {
 };
 
 Testing.selectbyID = (id, result) => {
+  
   sql.query(
     "SELECT  * FROM testing WHERE idtesting = ? ;", id,
     (err, res) => {

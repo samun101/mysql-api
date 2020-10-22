@@ -41,6 +41,7 @@ Years.getAll = result => {
 };
 
 Years.selectbyID = (id, result) => {
+  console.log(id)
   sql.query(
     "SELECT  * FROM years WHERE idyears = ? ;", id,
     (err, res) => {
