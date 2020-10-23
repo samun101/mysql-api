@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 });
 require("./apps/testing.routing.js")(app);
 require("./apps/year.routing.js")(app);
+require("./apps/schedule.routing.js")(app);
 // set port, listen for requests
 app.listen(app.get('port'), () => {
   console.log(`Server is running on port ${app.get('port')}`);

@@ -13,7 +13,7 @@ exports.getAll = (req, res) => {
 
 exports.selectbyID = (req, res) => {
   scheduleId = parseInt(req.params.idschedule),
-  Schedule.selectbyID(yearsId, (err, data) => {
+  Schedule.selectbyID(scheduleId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

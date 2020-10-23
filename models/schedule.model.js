@@ -1,6 +1,6 @@
 const sql = require("./db.js");
 // constructor
-const schedule = function(schedule) {
+const Schedule = function(schedule) {
   this.Name = schedule.UserID;
   this.schedulesName = schedule.schedulesName;
   this.yearID1 = schedule.yearID1;
@@ -9,8 +9,8 @@ const schedule = function(schedule) {
   this.yearID4 = schedule.yearID4;
 };
 
-Years.getAll = result => {
-  sql.query("SELECT * FROM years", (err, res) => {
+Schedule.getAll = result => {
+  sql.query("SELECT * FROM schedules", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -22,10 +22,10 @@ Years.getAll = result => {
 
 };
 
-Years.selectbyID = (id, result) => {
+Schedule.selectbyID = (id, result) => {
   console.log(id)
   sql.query(
-    "SELECT  * FROM years WHERE idyears = ? ;", id,
+    "SELECT  * FROM schedules WHERE idschedules = ? ;", id,
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -45,4 +45,4 @@ Years.selectbyID = (id, result) => {
   );
 
 };
-module.exports = Years;
+module.exports = Schedule;
