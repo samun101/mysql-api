@@ -1,8 +1,7 @@
-
-const Years = require("../models/year.model.js");
+const Schedule = require("../models/schedule.model.js");
 
 exports.getAll = (req, res) => {
-  Years.getAll((err, data) => {
+  Schedule.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -13,16 +12,16 @@ exports.getAll = (req, res) => {
 };
 
 exports.selectbyID = (req, res) => {
-  yearsId = parseInt(req.params.idyears),
-  Years.selectbyID(yearsId, (err, data) => {
+  scheduleId = parseInt(req.params.idschedule),
+  Schedule.selectbyID(yearsId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found year with id ${req.params.yearsId}.`
+          message: `Not found year with id ${req.params.scheduleId}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving year with id " + req.params.yearsId
+          message: "Error retrieving year with id " + req.params.scheduleId
         });
       }
     } else res.send(data);
