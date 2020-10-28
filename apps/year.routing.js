@@ -3,5 +3,4 @@ module.exports = app => {
 
   app.get("/years", year.getAll);
   app.get("/years:idyears",year.selectbyID)
-
 };
