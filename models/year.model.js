@@ -1,8 +1,6 @@
 const sql = require("./db.js");
 // constructor
 const Years = function(years) {
-//  this.requirements =[years.rName1,years.rName2,years.rName3,years.rName4,years.rName5,years.rName6,years.rName7,years.rName8,years.rName9,years.rName10,years.rName11,years.rName12,]
-//  this.requrementIDs = [years.requirementID1,years.requirementID2,years.requirementID3,years.requirementID4,years.requirementID5,years.requirementID6,years.requirementID7,years.requirementID8,years.requirementID9,years.requirementID10,years.requirementID11,years.requirementID12]
   this.rName1 = years.rName1;
   this.requirementID1 = years.requirementID1;
   this.rName2 = years.rName2;
