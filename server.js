@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-var cors = require('cors');
 const app = express();
 
 //dealing with CORS stuff, maybe
@@ -26,7 +25,6 @@ app.use(function(req, res, next) {
     next();
 });
 */
-app.use(cors());
 // parse requests of content-type: application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
