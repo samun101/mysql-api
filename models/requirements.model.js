@@ -1,5 +1,5 @@
 const sql = require("./db.js");
-// constructor
+// constructor for the requirements (same as the table)
 const Requirements = function(requirements) {
   this.idRequirements = requirements.idRequirements;
   this.RequirementName = requirements.RequirementName;
@@ -9,13 +9,13 @@ const Requirements = function(requirements) {
 };
 
 Requirements.getAll = result => {
-  sql.query("SELECT * FROM requirements;", (err, res) => {
-    if (err) {
+  sql.query("SELECT * FROM requirements;", (err, res) => {//selecting the whole table of requirements
+    if (err) {//error checking
       console.log("error: ", err);
       result(null, err);
       return;
     }
-    console.log("years: ", res);
+    console.log("years: ", res); //logging retrieved data to the console
     result(null, res);
   });
 
@@ -24,7 +24,7 @@ Requirements.getAll = result => {
 Requirements.selectbyMajor = (id, result) => {
   console.log(id)
   sql.query(
-    "SELECT  * FROM requirements WHERE MajorID = ? OR MajorID = 21 ;", id,
+    "SELECT  * FROM requirements WHERE MajorID = ? OR MajorID = 21 ;", id, //selecting the requirements from GEs and a specific major
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -38,7 +38,7 @@ Requirements.selectbyMajor = (id, result) => {
         return;
       }
 
-      console.log("got from years: ", { id: id });
+      console.log("got from requirements: ", { id: id });//logging the retrieved data to the console
       result(null,res);
     }
   );

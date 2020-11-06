@@ -1,5 +1,5 @@
 const sql = require("./db.js");
-// constructor
+// constructor, reflects the years table in the database
 const Years = function(years) {
   this.rName1 = years.rName1;
   this.requirementID1 = years.requirementID1;
@@ -27,40 +27,36 @@ const Years = function(years) {
   this.requirementID12 = years.requirementID12;
 };
 
-Years.getAll = result => {
+Years.getAll = result => {//getting everything from the years, for all students
   sql.query("SELECT * FROM years", (err, res) => {
     if (err) {
-      console.log("error: ", err);
+      console.log("error: ", err);//checking for errors
       result(null, err);
       return;
     }
-    console.log("years: ", res);
+    console.log("years: ", res);//logging the data recieved from the database
     result(null, res);
   });
 
 };
 
-Years.selectbyID = (id, result) => {
+Years.selectbyID = (id, result) => {//selecting a year based off a given ID
   console.log(id)
   sql.query(
     "SELECT  * FROM years WHERE idyears = ? ;", id,
     (err, res) => {
-      if (err) {
+      if (err) {//checking for errors
         console.log("error: ", err);
         result(null, err);
         return;
       }
-
-      if (res.affectedRows == 0) {
-        // not found Customer with the id
+      if (res.affectedRows == 0) {//no year with the given ID is found
         result({ kind: "not_found" }, null);
         return;
       }
-
-      console.log("got from years: ", { id: id });
+      console.log("got from years: ", { id: id });//logging the data from the database to the console
       result(null,res);
     }
   );
-
 };
 module.exports = Years;

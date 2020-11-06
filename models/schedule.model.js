@@ -1,5 +1,5 @@
 const sql = require("./db.js");
-// constructor
+// constructor for a schedule (same values as in table)
 const Schedule = function(schedule) {
   this.Name = schedule.UserID;
   this.schedulesName = schedule.schedulesName;
@@ -9,37 +9,36 @@ const Schedule = function(schedule) {
   this.yearID4 = schedule.yearID4;
 };
 
-Schedule.getAll = result => {
+Schedule.getAll = result => {//get everything from the Schedules table, all the schedules for every person
   sql.query("SELECT * FROM schedules", (err, res) => {
-    if (err) {
+    if (err) {//error checking
       console.log("error: ", err);
       result(null, err);
       return;
     }
-    console.log("years: ", res);
+    console.log("years: ", res);//printing recieved data to log
     result(null, res);
   });
 
 };
 
-Schedule.selectbyID = (id, result) => {
+Schedule.selectbyID = (id, result) => {//select a specific schedule
   console.log(id)
   sql.query(
     "SELECT  * FROM schedules WHERE idschedules = ? ;", id,
     (err, res) => {
-      if (err) {
+      if (err) {//error checking
         console.log("error: ", err);
         result(null, err);
         return;
       }
 
-      if (res.affectedRows == 0) {
-        // not found Customer with the id
+      if (res.affectedRows == 0) {//didn't find anything but ran successfully
         result({ kind: "not_found" }, null);
         return;
       }
 
-      console.log("got from years: ", { id: id });
+      console.log("got from years: ", { id: id });//logging data recieved to the console
       result(null,res);
     }
   );

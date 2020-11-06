@@ -1,10 +1,7 @@
-  const testing = require("./testing.controller.js");
+const testing = require("./testing.controller.js");
+//setting up endpoints for the testing table
 module.exports = app => {
-
-
-  // Create a new testing
   app.post("/testing", testing.create);
-
   app.get("/testing", testing.getAll);
   app.get("/testing:testingId",testing.selectbyID)
   app.delete("/testing", testing.clean);

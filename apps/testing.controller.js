@@ -1,5 +1,5 @@
 const Testing = require("../models/testing.model.js");
-
+//fewer comments due to being a testing for endpoints
 exports.create = (req, res) => {
   console.log(res);
   // Validate request

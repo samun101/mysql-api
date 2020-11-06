@@ -1,4 +1,5 @@
 const sql = require("./db.js");
+// few to no comments for testing, it'll probably be deleted upon completion
 // constructor
 const Testing = function(testing) {
   this.PhoneNumber = testing.PhoneNumber;
@@ -99,7 +100,7 @@ Testing.updateById = (id, testing, result) => {
 };
 
 Testing.selectbyID = (id, result) => {
-  
+
   sql.query(
     "SELECT  * FROM testing WHERE idtesting = ? ;", id,
     (err, res) => {

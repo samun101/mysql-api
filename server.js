@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "app.get successful" });
 });
+//including all the routings and endpoints made
 require("./apps/testing.routing.js")(app);
 require("./apps/year.routing.js")(app);
 require("./apps/schedule.routing.js")(app);
