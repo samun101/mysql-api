@@ -1,4 +1,4 @@
-const sql = require("./db.js");
+const sql = require("../db.js");
 // constructor for a schedule (same values as in table)
 const Schedule = function(schedule) {
   this.Name = schedule.UserID;

@@ -1,4 +1,4 @@
-const sql = require("./db.js");
+const sql = require("../db.js");
 // constructor for the requirements (same as the table)
 const Requirements = function(requirements) {
   this.idRequirements = requirements.idRequirements;

@@ -1,4 +1,4 @@
-const sql = require("./db.js");
+const sql = require("../db.js");
 // constructor, reflects the years table in the database
 const Years = function(years) {
   this.rName1 = years.rName1;
