@@ -16,7 +16,7 @@ Schedule.getAll = result => {//get everything from the Schedules table, all the 
       result(null, err);
       return;
     }
-    //console.log("years: ", res);//printing recieved data to log
+    //console.log("schedule: ", res);//printing recieved data to log
     result(null, res);
   });
 };
@@ -41,6 +41,6 @@ Schedule.selectbyID = (id, result) => {//select a specific schedule
       result(null,res);
     }
   );
-
 };
+
 module.exports = Schedule;

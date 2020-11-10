@@ -34,3 +34,23 @@ describe("testing schedule endpoints",()=>{
     })
   })
 })
+  describe("testing requirements endpoints",function(){
+    it("testing requirements.getAll endpoint", done=>{
+      chai.request(app).get("/requirements").end(function(err,res){
+        expect(res).to.have.status(200);
+        expect(res.body[0]).to.have.property("idRequirements");
+        expect(res.body).to.be.a('array');
+        done();
+      })
+    })
+  })
+  describe("testing users endpoints",function(){
+    it("testing users.getAll endpoint", done=>{
+      chai.request(app).get("/user").end(function(err,res){
+        expect(res).to.have.status(200);
+        expect(res.body[0]).to.have.property("idusers");
+        expect(res.body).to.be.a('array');
+        done();
+      })
+    })
+  })

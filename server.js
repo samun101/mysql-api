@@ -28,6 +28,7 @@ require("./apps/testing.routing.js")(app);
 require("./apps/year.routing.js")(app);
 require("./apps/schedule.routing.js")(app);
 require("./apps/requirements.routing.js")(app);
+require("./apps/user.routing.js")(app);
 
 // set port, listen for requests
 app.listen(app.get('port'), () => {

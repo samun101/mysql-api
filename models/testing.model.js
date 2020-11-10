@@ -78,7 +78,7 @@ Testing.remove = (id, result) => {
 Testing.updateById = (id, testing, result) => {
   sql.query(
     "UPDATE testing SET PhoneNumber = ?, stringText = ? WHERE idtesting = ?",
-    [parseInt(esting.PhoneNumber), testing.stringText, id],
+    [parseInt(testing.PhoneNumber), testing.stringText, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -100,7 +100,6 @@ Testing.updateById = (id, testing, result) => {
 };
 
 Testing.selectbyID = (id, result) => {
-
   sql.query(
     "SELECT  * FROM testing WHERE idtesting = ? ;", id,
     (err, res) => {
