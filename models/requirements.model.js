@@ -15,7 +15,7 @@ Requirements.getAll = result => {
       result(null, err);
       return;
     }
-    console.log("years: ", res); //logging retrieved data to the console
+  //console.log("years: ", res); //logging retrieved data to the console
     result(null, res);
   });
 
@@ -37,8 +37,7 @@ Requirements.selectbyMajor = (id, result) => {
         result({ kind: "not_found" }, null);
         return;
       }
-
-      console.log("got from requirements: ", { id: id });//logging the retrieved data to the console
+    //console.log("got from requirements: ", { id: id });//logging the retrieved data to the console
       result(null,res);
     }
   );

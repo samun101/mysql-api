@@ -16,14 +16,13 @@ Schedule.getAll = result => {//get everything from the Schedules table, all the 
       result(null, err);
       return;
     }
-    console.log("years: ", res);//printing recieved data to log
+    //console.log("years: ", res);//printing recieved data to log
     result(null, res);
   });
-
 };
 
 Schedule.selectbyID = (id, result) => {//select a specific schedule
-  console.log(id)
+  //console.log(id)
   sql.query(
     "SELECT  * FROM schedules WHERE idschedules = ? ;", id,
     (err, res) => {
@@ -38,7 +37,7 @@ Schedule.selectbyID = (id, result) => {//select a specific schedule
         return;
       }
 
-      console.log("got from years: ", { id: id });//logging data recieved to the console
+      //console.log("got from sched: ", { id: id });//logging data recieved to the console
       result(null,res);
     }
   );

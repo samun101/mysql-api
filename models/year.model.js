@@ -34,7 +34,7 @@ Years.getAll = result => {//getting everything from the years, for all students
       result(null, err);
       return;
     }
-    console.log("years: ", res);//logging the data recieved from the database
+  //  console.log("years: ", res);//logging the data recieved from the database
     result(null, res);
   });
 
@@ -54,7 +54,7 @@ Years.selectbyID = (id, result) => {//selecting a year based off a given ID
         result({ kind: "not_found" }, null);
         return;
       }
-      console.log("got from years: ", { id: id });//logging the data from the database to the console
+    //  console.log("got from years: ", { id: id });//logging the data from the database to the console
       result(null,res);
     }
   );
