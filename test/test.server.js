@@ -85,8 +85,8 @@ describe("testing users endpoints",function(){
       it("testing year.selectbyID endpoint", done=>{
         chai.request(app).get("/years1").end(function(err,res){
           expect(res).to.have.status(200);
-          expect(res.body[0]).to.have.property("idyears").to.equal(1);
-          expect(res.body[0]).to.have.property("idyears");
+          expect(res.body[0][0]).to.have.property("idyears").to.equal(1);
+          expect(res.body[0][0]).to.have.property("idyears");
           expect(res.body).to.be.a('array');
           done();
         })
