@@ -1,5 +1,5 @@
 const Years = require("../models/year.model.js");
-
+const requirements = require("./requirements.controller.js");
 exports.getAll = (req, res) => {//getting every year for every student in the Years table
   Years.getAll((err, data) => {
     if (err)
@@ -24,6 +24,6 @@ exports.selectbyID = (req, res) => {//select a year based off a specific yearID
           message: "Error retrieving year with id " + req.params.yearsId
         });
       }
-    } else res.send(data);//returning the data recieved from the database
+    } else {res.send(data); }//returning the data recieved from the database
   });
 };

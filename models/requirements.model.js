@@ -41,6 +41,28 @@ Requirements.selectbyMajor = (id, result) => {
       result(null,res);
     }
   );
+};
+Requirements.selectbyId = function(id, result){
+  console.log(id)
+  if(id == null) {return;}
+  sql.query(
+    "SELECT  * FROM requirements WHERE idRequirements = ?;", id, //selecting the requirements from GEs and a specific major
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
+      if (res.affectedRows == 0) {
+        // not found Customer with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+    //console.log("got from requirements: ", { id: id });//logging the retrieved data to the console
+      result(null,res);
+      return(res);
+    }
+  );
 };
 module.exports = Requirements;

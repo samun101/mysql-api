@@ -27,3 +27,22 @@ exports.selectbyMajor = (req, res) => {//select all the requirements of a given 
     } else res.send(data);//sending recieved data
   });
 };
+
+exports.selectbyId = (req, res) => {//select all the requirements of a given major
+  idRequirement = parseInt(req.params.idRequirement),
+  Requirements.selectbyId(idRequirement, (err, data) => {
+    if (err) {//error checking
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found year with id ${req.params.idRequirement}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving year with id " + req.params.idRequirement
+        });
+      }
+    } else {
+      res.send(data);
+    }//sending recieved data
+  });
+};

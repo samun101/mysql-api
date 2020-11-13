@@ -43,7 +43,20 @@ Years.getAll = result => {//getting everything from the years, for all students
 Years.selectbyID = (id, result) => {//selecting a year based off a given ID
   console.log(id)
   sql.query(
-    "SELECT  * FROM years WHERE idyears = ? ;", id,
+    `SELECT  * FROM years WHERE idyears = ?;
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid1 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid2 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid3 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid4 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid5 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid6 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid7 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid8 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid9 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid10 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid11 FROM years where idyears = ?);
+    SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid12 FROM years where idyears = ?);`
+    ,[id,id,id,id,id,id,id,id,id,id,id,id,id],
     (err, res) => {
       if (err) {//checking for errors
         console.log("error: ", err);
@@ -56,6 +69,7 @@ Years.selectbyID = (id, result) => {//selecting a year based off a given ID
       }
     //  console.log("got from years: ", { id: id });//logging the data from the database to the console
       result(null,res);
+      return(res)
     }
   );
 };

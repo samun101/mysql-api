@@ -7,7 +7,8 @@ const connection = mysql.createPool({
   user : 'bdd59ac6cdfb41',
   host : 'us-cdbr-east-02.cleardb.com',
   password : '10a3e7dd',
-  database : 'heroku_a18441a3eb52d5c'
+  database : 'heroku_a18441a3eb52d5c',
+  multipleStatements: true
 //  database: dbConfig.DB
 });
 
