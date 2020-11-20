@@ -14,14 +14,13 @@ Requirements.getAll = result => {
       result(null, err);
       return;
     }
-  //console.log("years: ", res); //logging retrieved data to the console
+
     result(null, res);
   });
 
 };
 
 Requirements.selectbyMajor = (id, result) => {
-  console.log(id)
   sql.query(
     "SELECT  * FROM requirements WHERE MajorID = ? OR MajorID = 21 ;", id, //selecting the requirements from GEs and a specific major
     (err, res) => {
@@ -36,13 +35,12 @@ Requirements.selectbyMajor = (id, result) => {
         result({ kind: "not_found" }, null);
         return;
       }
-    //console.log("got from requirements: ", { id: id });//logging the retrieved data to the console
+
       result(null,res);
     }
   );
 };
 Requirements.selectbyId = function(id, result){
-  console.log(id)
   if(id == null) {return;}
   sql.query(
     "SELECT  * FROM requirements WHERE idRequirements = ?;", id, //selecting the requirements from GEs and a specific major
@@ -58,7 +56,7 @@ Requirements.selectbyId = function(id, result){
         result({ kind: "not_found" }, null);
         return;
       }
-    //console.log("got from requirements: ", { id: id });//logging the retrieved data to the console
+
       result(null,res);
       return(res);
     }

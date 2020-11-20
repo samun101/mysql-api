@@ -14,7 +14,6 @@ Classes_taken.getAll = result => {//get everything from the classes_taken table,
       result(null, err);
       return;
     }
-    //console.log("classes_taken: ", res);//printing recieved data to log
     result(null, res);
   });
 };

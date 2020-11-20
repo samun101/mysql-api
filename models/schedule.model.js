@@ -16,7 +16,7 @@ Schedule.getAll = result => {//get everything from the Schedules table, all the 
       result(null, err);
       return;
     }
-    //console.log("schedule: ", res);//printing recieved data to log
+
     result(null, res);
   });
 };
@@ -37,7 +37,6 @@ Schedule.selectbyID = (id, result) => {//select a specific schedule
         return;
       }
 
-      //console.log("got from sched: ", { id: id });//logging data recieved to the console
       result(null,res);
     }
   );

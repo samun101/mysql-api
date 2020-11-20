@@ -41,7 +41,6 @@ Years.getAll = result => {//getting everything from the years, for all students
 };
 
 Years.selectbyID = (id, result) => {//selecting a year based off a given ID
-  console.log(id)
   sql.query(
     `SELECT  * FROM years WHERE idyears = ?;
     SELECT * FROM requirements WHERE idRequirements in (SELECT requirementid1 FROM years where idyears = ?);

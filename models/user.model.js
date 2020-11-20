@@ -14,7 +14,7 @@ User.getAll = result => {
       result(null, err);
       return;
     }
-  //console.log("users: ", res); //logging retrieved data to the console
+
     result(null, res);
   });
 

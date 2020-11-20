@@ -29,7 +29,6 @@ exports.selectbyID = (req, res) => {//select all classes_taken with a specific i
 };
 
 exports.create = (req, res) => {
-  //console.log(res);
   // Validate request
   if (!req.body) {
     res.status(400).send({
