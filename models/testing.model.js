@@ -1,6 +1,6 @@
 const sql = require("../db.js");
 // few to no comments for testing, it'll probably be deleted upon completion
-// constructor
+// constructor (Same values as in table minus ID)
 const Testing = function(testing) {
   this.PhoneNumber = testing.PhoneNumber;
   this.stringText = testing.stringText;

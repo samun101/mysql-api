@@ -1,7 +1,6 @@
 const sql = require("../db.js");
-// constructor for the requirements (same as the table)
+// constructor for the requirements (same as the table minus ID)
 const Requirements = function(requirements) {
-  this.idRequirements = requirements.idRequirements;
   this.RequirementName = requirements.RequirementName;
   this.majorID = requirements.majorID;
   this.FrequencyOffered = requirements.FrequencyOffered;

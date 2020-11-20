@@ -1,5 +1,5 @@
 const sql = require("../db.js");
-// constructor for a Classes_Testing (same values as in table)
+// constructor for a Classes_Testing (same values as in table minus ID)
 const Classes_taken = function(classes_taken) {
   this.className = classes_taken.className;
   this.requirementID = classes_taken.requirementID;
@@ -20,7 +20,6 @@ Classes_taken.getAll = result => {//get everything from the classes_taken table,
 };
 
 Classes_taken.selectbyID = (id, result) => {//select all classes a certain person has taken
-  //console.log(id)
   sql.query(
     "SELECT  * FROM classes_taken WHERE userID = ? ;", id,
     (err, res) => {

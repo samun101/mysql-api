@@ -1,5 +1,5 @@
 const sql = require("../db.js");
-// constructor, reflects the years table in the database
+// constructor, reflects the years table in the database without ID
 const Years = function(years) {
   this.rName1 = years.rName1;
   this.requirementID1 = years.requirementID1;

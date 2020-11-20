@@ -1,7 +1,6 @@
 const sql = require("../db.js");
 // constructor for the requirements (same as the table)
 const User = function(user) {
-  this.idUser = users.idusers;
   this.Name = users.Name;
   this.PhoneNumber= users.Phonenumber;
   this.SchoolID = users.SchoolID;
