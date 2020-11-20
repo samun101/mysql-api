@@ -1,7 +1,7 @@
 const sql = require("../db.js");
 // constructor for a schedule (same values as in table)
 const Schedule = function(schedule) {
-  this.Name = schedule.UserID;
+  this.userID = schedule.userID;
   this.schedulesName = schedule.schedulesName;
   this.yearID1 = schedule.yearID1;
   this.yearID2 = schedule.yearID2;

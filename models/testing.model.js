@@ -13,8 +13,8 @@ Testing.create = (newTesting, result) => {
       result(err, null);
       return;
     }
-    console.log("created testing: ", { id: res.insertId, ...newTesting });
-    result(null, { id: res.insertId, ...newTesting });
+    //console.log("created testing: ", { id: res.insertId, ...newTesting });
+    result(null, { id: res.insertId});
   });
 
 };
