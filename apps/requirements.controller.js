@@ -1,3 +1,4 @@
+// linking to the requirements.model.js file
 const Requirements = require("../models/requirements.model.js");
 
 exports.getAll = (req, res) => {//get all the requirements in the requirements table

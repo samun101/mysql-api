@@ -1,20 +1,28 @@
+// linking to the schedule.model.js file
 const Schedule = require("../models/schedule.model.js");
 
-exports.getAll = (req, res) => {//get everything from the schedule table
+// sending everything from the schedule table
+exports.getAll = (req, res) => {
   Schedule.getAll((err, data) => {
-    if (err)//error checking
+
+    //error checking
+    if (err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving years."
       });
-    else res.send(data);//sending recieved data
+
+    //sending recieved data to the user
+    else res.send(data);
   });
 };
 
-exports.selectbyID = (req, res) => {//select a specific schedule with a specific id
+// sending a specific schedule with a specific id
+exports.selectbyID = (req, res) => {
   scheduleId = parseInt(req.params.idschedule),
   Schedule.selectbyID(scheduleId, (err, data) => {
-    if (err) {//error checking
+    if (err) {
+      // addressing if nothing is found with the schedule ID
       if (err.kind === "not_found") {
         res.status(404).send({
           message: `Not found year with id ${req.params.scheduleId}.`
@@ -24,6 +32,8 @@ exports.selectbyID = (req, res) => {//select a specific schedule with a specific
           message: "Error retrieving year with id " + req.params.scheduleId
         });
       }
-    } else res.send(data);//sending recieved data
+    }
+    //sending recieved data to they user calling the API
+    else res.send(data);
   });
 };

@@ -1,20 +1,26 @@
+// linking to the classes_taken.model.js file
 const Classes_taken = require("../models/classes_taken.model.js");
 
-exports.getAll = (req, res) => {//get everything from the classes_taken table
+//get everything from the classes_taken table
+exports.getAll = (req, res) => {
   Classes_taken.getAll((err, data) => {
-    if (err)//error checking
+    //error checking
+    if (err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving years."
       });
-    else res.send(data);//sending recieved data
+    //sending recieved data to the user calling the API
+    else res.send(data);
   });
 };
 
-exports.selectbyID = (req, res) => {//select all classes_taken with a specific id
+//select all classes_taken with a specific id
+exports.selectbyID = (req, res) => {
   userId = parseInt(req.params.userID),
   Classes_taken.selectbyID(userId, (err, data) => {
-    if (err) {//error checking
+    if (err) {
+      //responding if no data found with teh given ID
       if (err.kind === "not_found") {
         res.status(404).send({
           message: `Not found year with id ${req.params.userID}.`
@@ -24,19 +30,20 @@ exports.selectbyID = (req, res) => {//select all classes_taken with a specific i
           message: "Error retrieving classes_taken with id " + req.params.userID
         });
       }
-    } else res.send(data);//sending recieved data
+      //sending recieved data to the user calling the API
+    } else res.send(data);
   });
 };
 
 exports.create = (req, res) => {
-  // Validate request
+  // Validate request isn't empty
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
   }
 
-  // Create a classes_taken
+  // Create a classes_taken object
   const classes_taken = new Classes_taken ({
     className: req.body.className,
     requirementID: req.body.requirementID,
@@ -51,7 +58,7 @@ exports.create = (req, res) => {
         message:
           err.message || "Some error occurred while creating the classes_taken."
       });
-      // Create a classes_taken
+      // Send data returned from the database to the user who sent data
     else res.send(data);
   });
 };
