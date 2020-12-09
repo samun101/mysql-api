@@ -43,8 +43,6 @@ User.selectByIdUser = (id, result) => {
 
 };
 User.selectUsername = (username, password, result) => {
-  console.log(username)
-  console.log(password)
   sql.query('SELECT * FROM users WHERE Name = ?;', username,//selecting the idusers from users
     (err, res) => {
       if (err) {
