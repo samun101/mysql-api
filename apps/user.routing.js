@@ -3,4 +3,5 @@ const user = require("./user.controller.js");
 module.exports = app => {
   app.get("/user", user.getAll);
   app.get("/user:idUser",user.selectbyIdUser)
+  app.get("/login/:username/:password",user.selectUsername)
 };

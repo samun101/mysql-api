@@ -42,4 +42,31 @@ User.selectByIdUser = (id, result) => {
   );
 
 };
+User.selectUsername = (username, password, result) => {
+  console.log(username)
+  console.log(password)
+  sql.query('SELECT * FROM users WHERE Name = ?;', username,//selecting the idusers from users
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found user with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      //checking to make sure the password is correct
+      if(res[0].Password == password){
+      //logging the retrieved data to the console
+        result(null,res);
+        return;
+      }
+      else result(null,{message:"incorrect password"})
+
+    }
+  );
+};
 module.exports = User;
