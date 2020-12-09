@@ -57,13 +57,19 @@ User.selectUsername = (username, password, result) => {
         return;
       }
       //checking to make sure the password is correct
-      if(res[0].Password == password){
-      //logging the retrieved data to the console
-        result(null,res);
-        return;
-      }
-      else result(null,{message:"incorrect password"})
-
+      else{
+        try{
+          if(res[0].Password == password){
+          //logging the retrieved data to the console
+            result(null,res);
+            return;
+          }
+        }
+        catch{
+          //result(null,{message:"incorrect username"})
+        }
+        result(null,{message:"incorrect Username or password"})
+    }
     }
   );
 };
