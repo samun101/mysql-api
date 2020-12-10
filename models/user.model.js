@@ -1,10 +1,12 @@
 const sql = require("../db.js");
 // constructor for the requirements (same as the table)
 const User = function(user) {
-  this.Name = users.Name;
-  this.PhoneNumber= users.Phonenumber;
-  this.SchoolID = users.SchoolID;
-  this.MajorID = users.MajorID;
+  this.Name = user.Name;
+  this.Phonenumber = user.Phonenumber;
+  this.SchoolID = user.SchoolID;
+  this.MajorID = user.MajorID;
+  this.SemestersTaken = user.SemestersTaken;
+  this.Password = user.Password;
 };
 
 User.getAll = result => {
@@ -65,12 +67,23 @@ User.selectUsername = (username, password, result) => {
             return;
           }
         }
-        catch{
-          //result(null,{message:"incorrect username"})
-        }
+        catch{}
         result(null,{message:"incorrect Username or password"})
     }
     }
   );
+};
+
+User.create = (newUser, result) => {
+  sql.query("INSERT INTO users SET ?", newUser, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    //console.log("created testing: ", { id: res.insertId, ...newTesting });
+    result(null, { id: res.insertId});
+  });
+
 };
 module.exports = User;

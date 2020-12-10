@@ -1,5 +1,35 @@
 const User = require("../models/user.model.js");
 
+exports.create = (req, res) => {
+  //console.log(res);
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+  // Create a user object
+  const user = new User ({
+    Name: req.body.Name,
+    Phonenumber: req.body.Phonenumber,
+    SchoolID:req.body.SchoolID,
+    MajorID:req.body.MajorID,
+    SemestersTaken:req.body.SemestersTaken,
+    Password:req.body.Password
+  });
+
+  // Save new user in the database
+  User.create(user, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while saving the new user."
+      });
+      // Create a new user
+    else res.send(data);
+  });
+};
+
 exports.getAll = (req, res) => {//get all the users in the user table
   User.getAll((err, data) => {
     if (err)//error checking
