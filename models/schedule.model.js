@@ -59,4 +59,28 @@ Schedule.selectbyID = (id, result) => {//select a specific schedule
   );
 };
 
+
+Schedule.updateById = (id, schedule, result) => {
+  sql.query(
+    "UPDATE schedules SET ? WHERE  idschedules = ?",
+    [schedule, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found schedule with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      //returning the updated schedule to the user who called update
+      result(null, { id: id, ...schedule });
+    }
+  );
+
+};
+
 module.exports = Schedule;

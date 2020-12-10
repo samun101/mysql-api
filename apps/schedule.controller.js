@@ -72,3 +72,33 @@ exports.selectbyID = (req, res) => {
     else res.send(data);
   });
 };
+
+exports.update = (req, res) => {
+  // Validate Request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  //actually updating
+  Schedule.updateById(
+    parseInt(req.params.idschedule),
+    new Schedule(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found schedule with id ${req.params.idschedule}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating testing with id " + req.params.idschedule
+          });
+        }
+      }
+      //sending the data sent by the database to they user
+      else res.send(data);
+    }
+  );
+};

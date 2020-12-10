@@ -93,7 +93,7 @@ exports.update = (req, res) => {
 
   //actually updating the year
   Years.updateById(
-    req.params.idyears,
+    parseInt(req.params.idyears),
     new Years(req.body),
     (err, data) => {
       //checking to make sure information was sent properly
