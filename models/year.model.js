@@ -72,6 +72,7 @@ Years.selectbyID = (id, result) => {//selecting a year based off a given ID
     }
   );
 };
+//save a year into the database
 Years.create = (newYear, result) => {
   sql.query("INSERT INTO years SET ?", newYear, (err, res) => {
     if (err) {
@@ -82,6 +83,29 @@ Years.create = (newYear, result) => {
 
     result(null, { id: res.insertId});
   });
+
+};
+//update a year currently in the database
+Years.updateById = (id, year, result) => {
+  sql.query(
+    "UPDATE years SET ? WHERE idyears = ?",
+    [year, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found Customer with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      //returning the id and content of the updated year
+      result(null, { id: id, ...year });
+    }
+  );
 
 };
 module.exports = Years;

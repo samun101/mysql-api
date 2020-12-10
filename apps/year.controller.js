@@ -1,5 +1,5 @@
 const Years = require("../models/year.model.js");
-const requirements = require("./requirements.controller.js");
+
 //getting every year for every student in the Years table
 exports.getAll = (req, res) => {
   Years.getAll((err, data) => {
@@ -80,4 +80,36 @@ exports.selectbyID = (req, res) => {
       //returning the data recieved from the database
     } else {res.send(data); }
   });
+};
+
+
+exports.update = (req, res) => {
+  // Validate that the information sent isn't empty
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  //actually updating the year
+  Years.updateById(
+    req.params.idyears,
+    new Years(req.body),
+    (err, data) => {
+      //checking to make sure information was sent properly
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found year with id ${req.params.idyears}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating year with id " + req.params.idyears
+          });
+        }
+      }
+      //sending the data from the database to the user who called the API
+      else res.send(data);
+    }
+  );
 };
