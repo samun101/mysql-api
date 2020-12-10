@@ -1,6 +1,40 @@
 // linking to the schedule.model.js file
 const Schedule = require("../models/schedule.model.js");
-const Year = require("../models/year.model.js");
+
+exports.create = (req, res) => {
+  //console.log(res);
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  // Create a Schedule to be sent to database
+  const schedule = new Schedule ({
+    userID: req.body.userID,
+    schedulesName:req.body.schedulesName,
+    yName1:req.body.yName1,
+    yearID1:req.body.yearID1,
+    yName2:req.body.yName2,
+    yearID2:req.body.yearID2,
+    yName3:req.body.yName3,
+    yearID3:req.body.yearID3,
+    yName4:req.body.yName4,
+    yearID4:req.body.yearID4
+  });
+
+  // Save schedule in the database
+  Schedule.create(schedule, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Schedule."
+      });
+      // Create a schedule to be saved
+    else res.send(data);
+  });
+};
 
 // sending everything from the schedule table
 exports.getAll = (req, res) => {

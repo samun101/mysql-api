@@ -3,10 +3,27 @@ const sql = require("../db.js");
 const Schedule = function(schedule) {
   this.userID = schedule.userID;
   this.schedulesName = schedule.schedulesName;
+  this.yName1 = schedule.yName1;
   this.yearID1 = schedule.yearID1;
+  this.yName2 = schedule.yName2;
   this.yearID2 = schedule.yearID2;
+  this.yName3 = schedule.yName3;
   this.yearID3 = schedule.yearID3;
+  this.yName4 = schedule.yName4;
   this.yearID4 = schedule.yearID4;
+};
+
+//save a schedule into the database
+Schedule.create = (newSchedule, result) => {
+  sql.query("INSERT INTO schedules SET ?", newSchedule, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, { id: res.insertId});
+  });
+
 };
 
 Schedule.getAll = result => {//get everything from the Schedules table, all the schedules for every person
