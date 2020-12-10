@@ -72,4 +72,16 @@ Years.selectbyID = (id, result) => {//selecting a year based off a given ID
     }
   );
 };
+
+Years.create = (newYear, result) => {
+  sql.query("INSERT INTO years SET ?", newYear, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, { id: res.insertId});
+  });
+};
+
 module.exports = Years;

@@ -28,7 +28,6 @@ Testing.getAll = result => {
     }
     result(null, res);
   });
-
 };
 
 Testing.clean = result => {

@@ -1,5 +1,6 @@
 // linking to the schedule.model.js file
 const Schedule = require("../models/schedule.model.js");
+const Year = require("../models/year.model.js");
 
 // sending everything from the schedule table
 exports.getAll = (req, res) => {

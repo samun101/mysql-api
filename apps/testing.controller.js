@@ -35,7 +35,8 @@ exports.getAll = (req, res) => {
           err.message || "Some error occurred while retrieving testing."
       });
     else res.send(data);
-  });
+    });
+
 };
 
 exports.clean = (req, res) => {

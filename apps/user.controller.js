@@ -1,7 +1,6 @@
 const User = require("../models/user.model.js");
 
 exports.create = (req, res) => {
-  //console.log(res);
   // Validate request
   if (!req.body) {
     res.status(400).send({

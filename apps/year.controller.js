@@ -1,29 +1,35 @@
 const Years = require("../models/year.model.js");
 const requirements = require("./requirements.controller.js");
-exports.getAll = (req, res) => {//getting every year for every student in the Years table
+//getting every year for every student in the Years table
+exports.getAll = (req, res) => {
   Years.getAll((err, data) => {
     if (err)
-      res.status(500).send({//checking if it worked
+    //checking if it worked
+      res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving years."
       });
-    else res.send(data);//returning the data recieved from the database
+    //returning the data recieved from the database
+    else res.send(data);
   });
 };
-
-exports.selectbyID = (req, res) => {//select a year based off a specific yearID
+//select a year based off a specific yearID
+exports.selectbyID = (req, res) => {
   yearsId = parseInt(req.params.idyears),
   Years.selectbyID(yearsId, (err, data) => {
     if (err) {
-      if (err.kind === "not_found") {//checking if a year was found with the ID
+      //checking if a year was found with the ID
+      if (err.kind === "not_found") {
         res.status(404).send({
           message: `Not found year with id ${req.params.yearsId}.`
         });
       } else {
-        res.status(500).send({//checking for errors
+        //checking for errors
+        res.status(500).send({
           message: "Error retrieving year with id " + req.params.yearsId
         });
       }
-    } else {res.send(data); }//returning the data recieved from the database
+      //returning the data recieved from the database
+    } else {res.send(data); }
   });
 };
