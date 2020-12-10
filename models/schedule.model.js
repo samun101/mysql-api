@@ -24,7 +24,7 @@ Schedule.getAll = result => {//get everything from the Schedules table, all the 
 Schedule.selectbyID = (id, result) => {//select a specific schedule
   //console.log(id)
   sql.query(
-    "SELECT  * FROM schedules WHERE idschedules = ? ;", id,
+    "SELECT  * FROM schedules WHERE userID = ? ;", id,
     (err, res) => {
       if (err) {//error checking
         console.log("error: ", err);
