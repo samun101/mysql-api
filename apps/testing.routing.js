@@ -3,8 +3,8 @@ const testing = require("./testing.controller.js");
 module.exports = app => {
   app.post("/testing", testing.create);
   app.get("/testing", testing.getAll);
-  app.get("/testing:testingId",testing.selectbyID)
+  app.get("/testing/:testingId",testing.selectbyID)
   app.delete("/testing", testing.clean);
-  app.delete("/testing:testingId", testing.remove);
-  app.put("/testing:testingId", testing.update);
+  app.delete("/testing/:testingId", testing.remove);
+  app.put("/testing/:testingId", testing.update);
 };
