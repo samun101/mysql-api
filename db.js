@@ -1,5 +1,4 @@
 const mysql = require("mysql");
-//const dbConfig = require("../config/db.config.js");
 
 // Create a connection to the database
 const connection = mysql.createPool({
@@ -9,7 +8,6 @@ const connection = mysql.createPool({
   password : '10a3e7dd',
   database : 'heroku_a18441a3eb52d5c',
   multipleStatements: true
-//  database: dbConfig.DB
 });
 
 // open the MySQL connection
