@@ -1,45 +1,34 @@
-const sql = require("../db.js");
-// constructor for the requirements (same as the table)
-const User = function(user) {
-  this.Name = users.Name;
-  this.PhoneNumber= users.Phonenumber;
-  this.SchoolID = users.SchoolID;
-  this.MajorID = users.MajorID;
-};
+const User = require("../models/user.model.js");
 
-User.getAll = result => {
-  sql.query("SELECT * FROM users;", (err, res) => {//selecting the whole table of users
-    if (err) {//error checking
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-
-    result(null, res);
+//get all the users in the user table
+exports.getAll = (req, res) => {
+  User.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving users."
+      });
+    //sending recieved data
+    else res.send(data);
   });
-
 };
 
-User.selectByIdUser = (id, result) => {
-  console.log(id)
-  sql.query(
-    "SELECT  * FROM users WHERE idusers = ?;", id, //selecting the idusers from users
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
+//require a user by their ID
+exports.selectbyIdUser = (req, res) => {
+  idUser = parseInt(req.params.idUser),
+  User.selectByIdUser(idUser, (err, data) => {
+    //check to make sure required userID matches a userID in the database
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with id ${req.params.idUser}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving user with id " + req.params.idUser
+        });
       }
-
-      if (res.affectedRows == 0) {
-        // not found user with the id
-        result({ kind: "not_found" }, null);
-        return;
-      }
-    //console.log("got from users: ", { id: id });//logging the retrieved data to the console
-      result(null,res);
-    }
-  );
-
+      //sending recieved data
+    } else res.send(data);
+  });
 };
-module.exports = User;
