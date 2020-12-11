@@ -45,7 +45,7 @@ User.selectByIdUser = (id, result) => {
 
 };
 User.selectUsername = (username, password, result) => {
-  sql.query('SELECT * FROM users WHERE Name = ?;', username,//selecting the idusers from users
+  sql.query('SELECT * FROM users WHERE (Name = ? OR Phonenumber=?);', [username,username],//selecting the idusers from users
     (err, res) => {
       if (err) {
         console.log("error: ", err);

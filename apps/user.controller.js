@@ -59,7 +59,7 @@ exports.selectbyIdUser = (req, res) => {//select a user by their ID
 
 exports.selectUsername = (req, res) => {//select a user by their ID
   username = req.params.username
-  password = req.params.password,
+  password = req.params.password
   User.selectUsername(username,password, (err, data) => {
     //error checking
     if (err) {
