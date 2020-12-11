@@ -81,7 +81,6 @@ User.create = (newUser, result) => {
       result(err, null);
       return;
     }
-    console.log(res)
     result(null, { id: res.insertId});
   });
 };

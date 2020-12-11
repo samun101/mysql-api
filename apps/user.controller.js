@@ -16,16 +16,21 @@ exports.create = (req, res) => {
     SemestersTaken:req.body.SemestersTaken,
     Password:req.body.Password
   });
-  console.log(user)
   // Save new user in the database
   User.create(user, (err, data) => {
-    if (err)
+    if (err){
+      console.log(err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while saving the new user."
       });
+    }
       // Create a new user
-    else res.send(data);
+    else{
+      if(data.id == 0) res.send({message:"username or phonenumber already linked to account"})
+      else res.send(data);
+
+    }
   });
 };
 
