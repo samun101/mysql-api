@@ -54,6 +54,7 @@ exports.getAll = (req, res) => {
 
 // sending a specific schedule with a specific id
 exports.selectbyID = (req, res) => {
+
   scheduleId = parseInt(req.params.idschedule),
   Schedule.selectbyID(scheduleId, (err, data) => {
     if (err) {
