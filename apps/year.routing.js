@@ -4,5 +4,6 @@ module.exports = app => {
   app.post("/years", year.create);
   app.get("/years", year.getAll);
   app.get("/years/:idyears",year.selectbyID)
+  app.get("/yearsClean/:idyears",year.selectbyIDClean)
   app.put("/years/:idyears",year.update)
 };

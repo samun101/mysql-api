@@ -72,6 +72,29 @@ Years.selectbyID = (id, result) => {//selecting a year based off a given ID
     }
   );
 };
+
+Years.selectbyIDClean = (id, result) => {//selecting a year based off a given ID
+  sql.query(
+    `SELECT  * FROM years WHERE idyears = ?;`
+    ,id,
+    (err, res) => {
+      if (err) {//checking for errors
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      if (res.affectedRows == 0) {//no year with the given ID is found
+        result({ kind: "not_found" }, null);
+        return;
+      }
+    //  console.log("got from years: ", { id: id });//logging the data from the database to the console
+      result(null,res);
+      return(res)
+    }
+  );
+};
+
+
 //save a year into the database
 Years.create = (newYear, result) => {
   sql.query("INSERT INTO years SET ?", newYear, (err, res) => {

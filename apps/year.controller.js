@@ -82,6 +82,27 @@ exports.selectbyID = (req, res) => {
   });
 };
 
+//select a year based off a specific yearID
+exports.selectbyIDClean = (req, res) => {
+  yearsId = parseInt(req.params.idyears),
+  Years.selectbyIDClean(yearsId, (err, data) => {
+    if (err) {
+      //checking if a year was found with the ID
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found year with id ${req.params.yearsId}.`
+        });
+      } else {
+        //checking for errors
+        res.status(500).send({
+          message: "Error retrieving year with id " + req.params.yearsId
+        });
+      }
+      //returning the data recieved from the database
+    } else {res.send(data); }
+  });
+};
+
 
 exports.update = (req, res) => {
   // Validate that the information sent isn't empty
