@@ -7,4 +7,5 @@ module.exports = app => {
   app.get("/schedule", schedule.getAll);
   app.get("/schedule/:idschedule",schedule.selectbyID)
   app.put("/schedule/:idschedule", schedule.update);
+  app.delete("/schedule/:idschedule", schedule.remove);
 };

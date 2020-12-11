@@ -83,4 +83,31 @@ Schedule.updateById = (id, schedule, result) => {
 
 };
 
+Schedule.remove = (id, result) => {
+  sql.query(
+    `DELETE FROM years WHERE idyears IN (
+    (SELECT yearID1 FROM schedules WHERE idschedules =?),
+    (SELECT yearID2 FROM schedules WHERE idschedules=?),
+    (SELECT yearID3 FROM schedules WHERE idschedules=?),
+    (SELECT yearID4 FROM schedules WHERE idschedules=?));
+    DELETE FROM schedules WHERE idschedules = ?;` , [id,id,id,id,id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found schedule with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      console.log(res)
+      result(null, res);
+    }
+  );
+
+};
+
 module.exports = Schedule;

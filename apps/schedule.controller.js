@@ -102,3 +102,26 @@ exports.update = (req, res) => {
     }
   );
 };
+
+exports.remove = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+  scheduleId = parseInt(req.params.idschedule),
+  Schedule.remove(scheduleId,(err, data) => {
+    if (err) {
+
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `value not found.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not empty data from database"
+        });
+      }
+    } else res.send({ message: `Data removed successfully` });
+  });
+}
