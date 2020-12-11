@@ -61,7 +61,6 @@ User.selectUsername = (username, password, result) => {
       //checking to make sure the password is correct
       else{
         try{
-          console.log(res[0].Password)
           if(res[0].Password == password){
           //logging the retrieved data to the console
             result(null,res);
