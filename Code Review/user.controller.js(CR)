@@ -1,20 +1,24 @@
 const User = require("../models/user.model.js");
 
-exports.getAll = (req, res) => {//get all the users in the user table
+//get all the users in the user table
+exports.getAll = (req, res) => {
   User.getAll((err, data) => {
-    if (err)//error checking
+    if (err)
       res.status(500).send({
         message:
           err.message || "Some error occurred while retrieving users."
       });
-    else res.send(data);//sending recieved data
+    //sending recieved data
+    else res.send(data);
   });
 };
 
-exports.selectbyIdUser = (req, res) => {//select a user by their ID
+//require a user by their ID
+exports.selectbyIdUser = (req, res) => {
   idUser = parseInt(req.params.idUser),
   User.selectByIdUser(idUser, (err, data) => {
-    if (err) {//error checking
+    //check to make sure required userID matches a userID in the database
+    if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
           message: `Not found user with id ${req.params.idUser}.`
@@ -24,6 +28,7 @@ exports.selectbyIdUser = (req, res) => {//select a user by their ID
           message: "Error retrieving user with id " + req.params.idUser
         });
       }
-    } else res.send(data);//sending recieved data
+      //sending recieved data
+    } else res.send(data);
   });
 };
