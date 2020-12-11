@@ -45,7 +45,7 @@ User.selectByIdUser = (id, result) => {
 
 };
 User.selectUsername = (username, password, result) => {
-  sql.query('SELECT * FROM users WHERE (Name = ? OR Phonenumber=?);', [username,username],//selecting the idusers from users
+  sql.query('SELECT * FROM users WHERE (Name = ? OR Phonenumber = ?);', [username,username],//selecting the idusers from users
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -61,6 +61,7 @@ User.selectUsername = (username, password, result) => {
       //checking to make sure the password is correct
       else{
         try{
+          console.log(res[0].Password)
           if(res[0].Password == password){
           //logging the retrieved data to the console
             result(null,res);
@@ -101,8 +102,7 @@ User.remove = (id, result) => {
         result({ kind: "not_found" }, null);
         return;
       }
-
-      console.log("removed user: ", { id: id });
+      //returning the information from the database
       result(null, res);
     }
   );
