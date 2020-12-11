@@ -115,6 +115,7 @@ exports.update = (req, res) => {
   //actually updating
   User.updateById(
     req.params.idUser,
+    console.log(req.body)
     new User(req.body),
     (err, data) => {
       if (err) {
