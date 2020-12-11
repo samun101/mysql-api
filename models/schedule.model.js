@@ -103,7 +103,7 @@ Schedule.remove = (id, result) => {
         result({ kind: "not_found" }, null);
         return;
       }
-      console.log(res)
+
       result(null, res);
     }
   );
