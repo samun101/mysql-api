@@ -103,3 +103,31 @@ exports.remove = (req, res) => {
     else res.send({ message: `User was removed from database successfully!` });
   });
 }
+
+exports.update = (req, res) => {
+  // Validate Request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  //actually updating
+  User.updateById(
+    req.params.idUser,
+    new User(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found user with id ${req.params.idUserr}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating user with id " + req.params.idUser
+          });
+        }
+      } else res.send(data);
+    }
+  );
+};

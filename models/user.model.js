@@ -81,7 +81,7 @@ User.create = (newUser, result) => {
       result(err, null);
       return;
     }
-    //console.log("created testing: ", { id: res.insertId, ...newTesting });
+    console.log(res)
     result(null, { id: res.insertId});
   });
 };
@@ -105,6 +105,28 @@ User.remove = (id, result) => {
 
       console.log("removed user: ", { id: id });
       result(null, res);
+    }
+  );
+
+};
+
+User.updateById = (id, user, result) => {
+  sql.query("UPDATE users SET ? WHERE idusers=?",
+    [user, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found user with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      //returning the data from the user updated
+      result(null, { id: id, ...user });
     }
   );
 
