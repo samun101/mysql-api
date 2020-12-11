@@ -77,3 +77,29 @@ exports.selectUsername = (req, res) => {//select a user by their ID
     res.send(data);
   });
 };
+
+
+exports.remove = (req, res) => {
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+  //making sure that the id passed to us is an integer
+  idUser = parseInt(req.params.idUser),
+  User.remove(idUser,(err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `User not found.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not empty from database"
+        });
+      }
+    }
+    //sending confirmation message to client calling APIs
+    else res.send({ message: `User was removed from database successfully!` });
+  });
+}

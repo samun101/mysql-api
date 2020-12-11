@@ -84,6 +84,30 @@ User.create = (newUser, result) => {
     //console.log("created testing: ", { id: res.insertId, ...newTesting });
     result(null, { id: res.insertId});
   });
+};
+
+
+User.remove = (id, result) => {
+  //deleting the user from the database
+  sql.query("DELETE FROM users WHERE idusers = ?", id,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // no user with ID found
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("removed user: ", { id: id });
+      result(null, res);
+    }
+  );
 
 };
+
 module.exports = User;
