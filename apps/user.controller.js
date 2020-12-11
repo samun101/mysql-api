@@ -16,7 +16,7 @@ exports.create = (req, res) => {
     SemestersTaken:req.body.SemestersTaken,
     Password:req.body.Password
   });
-
+  console.log(user)
   // Save new user in the database
   User.create(user, (err, data) => {
     if (err)
@@ -115,7 +115,7 @@ exports.update = (req, res) => {
   //actually updating
   User.updateById(
     req.params.idUser,
-    console.log(req.body)
+
     new User(req.body),
     (err, data) => {
       if (err) {
